@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import Logo from './Logo';
-
 import {
   Box,
   Flex,
@@ -10,8 +9,8 @@ import {
   Link,
   useColorModeValue,
   Spacer,
-  useColorMode,
 } from '@chakra-ui/react';
+import ColorModeToggler from './ColorModeToggle';
 
 const Navbar: FC = () => {
   const linkColor = useColorModeValue('secondary.400', 'secondary.200');
@@ -65,7 +64,6 @@ const Navbar: FC = () => {
 };
 
 const DesktopNav: FC = () => {
-  const { colorMode, toggleColorMode } = useColorMode();
   const linkColor = useColorModeValue('gray.400', 'gray.200');
   const linkHoverColor = useColorModeValue('gray.800', 'white');
 
@@ -73,9 +71,7 @@ const DesktopNav: FC = () => {
     <Box>
       <Flex align="center">
         <Box>
-          <Button onClick={toggleColorMode}>
-            Toggle {colorMode === 'light' ? 'Dark' : 'Light'}
-          </Button>
+          <ColorModeToggler />
         </Box>
         <Box mx={4}>
           <HStack spacing="20px">
