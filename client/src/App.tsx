@@ -1,11 +1,9 @@
-import { useState } from "react";
-import Navbar from "./components/Navbar";
-import { Box, Container } from "@chakra-ui/react";
-import { ChakraProvider } from "@chakra-ui/react";
-import theme from "./theme";
+import Navbar from './components/Navbar';
+import { Box, Container } from '@chakra-ui/react';
+import { ChakraProvider } from '@chakra-ui/react';
+import theme from './theme';
 
 function App() {
-  const [count, setCount] = useState(0);
 
   return (
     <>

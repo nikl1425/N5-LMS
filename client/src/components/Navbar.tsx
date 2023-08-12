@@ -1,46 +1,110 @@
-import { FC } from "react";
-import Logo from "./Logo";
-
+import { FC } from 'react';
+import Logo from './Logo';
 
 import {
   Box,
   Flex,
   Text,
-  IconButton,
   Button,
-  Stack,
-  Collapse,
-  Icon,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
+  HStack,
+  Link,
   useColorModeValue,
-  useBreakpointValue,
-  useDisclosure,
-  Spacer
-} from "@chakra-ui/react";
-import {
-  HamburgerIcon,
-  CloseIcon,
-  ChevronDownIcon,
-  ChevronRightIcon,
-} from "@chakra-ui/icons";
+  Spacer,
+  useColorMode,
+} from '@chakra-ui/react';
 
 const Navbar: FC = () => {
-  const linkColor = useColorModeValue("gray.600", "gray.200");
-  const linkHoverColor = useColorModeValue("gray.800", "white");
-  const popoverContentBgColor = useColorModeValue("white", "gray.800");
+  const linkColor = useColorModeValue('secondary.400', 'secondary.200');
 
   return (
     <Box>
-      <Flex bg={useColorModeValue('primary.500', 'Gray 800')} py={2} alignItems='center'>
+      <Flex
+        bg={useColorModeValue('white', 'Gray 800')}
+        py={2}
+        alignItems="center"
+      >
+        <Box display={{ base: 'flex', md: 'none' }}>MobileNav</Box>
+        <Spacer display={{ base: 'flex', md: 'none' }} />
         <Box>
-            <Logo size='50px' />
+          <Logo size="50px" />
         </Box>
         <Spacer />
         <Box>
-            <h1>links</h1>
+          <Box display={{ base: 'none', md: 'flex' }} ml={10}>
+            <DesktopNav />
+          </Box>
         </Box>
+        <Box ps="1rem">
+          <HStack spacing="10px">
+            <Button
+              as="a"
+              href={'#'}
+              fontWeight={400}
+              fontSize={'md'}
+              variant="link"
+              color={linkColor}
+            >
+              Sign In
+            </Button>
+            <Button
+              as="a"
+              size="md"
+              fontWeight={600}
+              fontSize={'md'}
+              textColor="white"
+              bg="pink.400"
+              href={'#'}
+            >
+              Sign Up
+            </Button>
+          </HStack>
+        </Box>
+      </Flex>
+    </Box>
+  );
+};
+
+const DesktopNav: FC = () => {
+  const { colorMode, toggleColorMode } = useColorMode();
+  const linkColor = useColorModeValue('gray.400', 'gray.200');
+  const linkHoverColor = useColorModeValue('gray.800', 'white');
+
+  return (
+    <Box>
+      <Flex align="center">
+        <Box>
+          <Button onClick={toggleColorMode}>
+            Toggle {colorMode === 'light' ? 'Dark' : 'Light'}
+          </Button>
+        </Box>
+        <Box mx={4}>
+          <HStack spacing="20px">
+            <Link
+              _hover={{ textDecoration: 'none', textColor: linkHoverColor }}
+              textColor={linkColor}
+            >
+              <Text fontWeight="base" fontSize="md">
+                Courses
+              </Text>
+            </Link>
+            <Link
+              _hover={{ textDecoration: 'none', textColor: linkHoverColor }}
+              textColor={linkColor}
+            >
+              <Text fontWeight="base" fontSize="md">
+                Ressources
+              </Text>
+            </Link>
+            <Link
+              _hover={{ textDecoration: 'none', textColor: linkHoverColor }}
+              textColor={linkColor}
+            >
+              <Text fontWeight="base" fontSize="md">
+                About
+              </Text>
+            </Link>
+          </HStack>
+        </Box> 
       </Flex>
     </Box>
   );
